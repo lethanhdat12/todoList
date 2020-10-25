@@ -1,0 +1,174 @@
+//SASS THUOC TINH CHUNG
+$fontSize: 1rem;
+$color: #495057;
+$backgroundColor: #fff;
+$borderCustom: 1px solid #cededa;
+
+// SASS HEADER
+.container{
+  font-size: $fontSize;
+  font-family: sans-serif;
+}
+
+// col-xs-4 col-sm-4 col-md-4 col-lg-4
+#page-header{
+  margin-bottom: 2rem;
+  hr{
+    margin-top: 3rem;
+  }
+}
+#header-todoList {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  border: $borderCustom;
+  width: 250px;
+  border-radius: 0.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $color;
+  background-color: $backgroundColor;
+  background-clip: padding-box;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+
+  #header-icons-input {
+    #todo-input {
+      margin-right: 10px;
+      width: 200px;
+      border: none;
+    }
+    #todo-input:focus {
+      outline: none;
+    }
+  }
+  #header-icons-button button {
+    width: 100px;
+    margin-left: 1rem;
+  }
+}
+// col-xs-5 col-sm-5 col-md-5 col-lg-5
+#header-todoList-search{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  border: $borderCustom;
+  width: 300px;
+  border-radius: 0.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $color;
+  background-color: $backgroundColor;
+  background-clip: padding-box;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+   
+  #header-icons-inputSearch{
+    #todo-inputSearch{
+      margin-right: 10px;
+      width: 250px;
+      border: none;
+    }
+    #todo-inputSearch:focus {
+      outline: none;
+    }
+  }
+  #header-icons-Search button {
+    margin-left: 1rem;
+  }
+}
+
+// col-xs-3 col-sm-3 col-md-3 col-lg-3
+#page-dropdown {
+  #page-dropdown-select {
+    width: 120px;
+    margin-right: 10px;
+  }
+  button {
+    background-color:#04B404;
+    border: none;
+  }
+}
+
+// SASS Table
+.page{
+  margin-bottom: 3rem;
+}
+.page-title{
+  text-align: left;
+  background: #E6E0F8;
+  width: 100%;
+  padding: 0.775rem 0.75rem;
+  color: #0B610B;
+}
+#page-title-contents{
+  text-align: left;
+}
+#page-title-button{
+  #delete{
+    background-color: #ff3547;
+    border: none;
+    margin-left: 3px;
+  }
+  #edit{
+    background-color: #DBA901;
+    border: none;
+  }
+  #detail{
+    margin-left: 3px;
+    border: none;
+  }
+}
+
+
+// SASS FOOTER
+#page-footer{
+  margin-bottom: 2rem;
+  background-color: #E6E0F8;
+  padding: 0.975rem 0.75rem;
+  color: #04B404;
+}
+.panigination{
+  margin: 0;
+  padding: 0;
+  margin-left: 20px;
+  .Linkpage{
+    list-style-type: none;
+    display: inline;
+    padding: 5px 8px;
+    margin-right: 5px;
+    border-radius: 3px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+  }
+}
+.modalDelete{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba($color: #949292, $alpha: 0.4);
+  display: none;
+  .overlay{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  .AlertDelete{
+    width: 400px;
+    background-color: white;
+    margin: 0 auto;
+    z-index: 1;
+    margin-top: 50px;
+    border-radius: 10px;
+  }
+}
+.card-body{
+  button{
+    margin-right: 5px;
+    width: 100px;
+  }
+}

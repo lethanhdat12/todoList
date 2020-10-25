@@ -1,0 +1,55 @@
+// SASS
+#page-section {
+  margin-top: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+  .row{
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    tr{
+      text-align: left;
+    }
+  }
+  table{
+    #page-section-th{
+      width: 350px;
+    }
+    #page-section-td{
+      #delete{
+        background-color: #ff3547;
+        border: none;
+      }
+    }
+  }
+  #page-section-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    #header-todoList {
+      #header-icons-tag {
+        margin-right: 0.5rem;
+      }
+      #header-icons-input {
+        #todo-input {
+          padding-right: 1rem;
+        }
+      }
+      #header-icons-button{
+       margin-left: .5rem;
+      }
+    }
+  }
+}
+#page-button {
+  margin-top: 2rem;
+  #back {
+    background-color: #04B404;
+    border: none;
+    margin-bottom: 1rem;
+    #page-button-back {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}
