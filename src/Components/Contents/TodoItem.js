@@ -11,7 +11,7 @@ export default class TodoItem extends Component {
                     <th scope="row">{this.props.stt}</th>
                     <td id="page-title-contents">{this.props.task}</td>
                     <td id="page-title-button">
-                            <Button id="edit">
+                            <Button id="edit" onClick = {this.props.edit}>
                                 <AiFillEdit />&nbsp;
                                 Edit
                             </Button>

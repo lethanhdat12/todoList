@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./TodoList.scss";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, FormControl } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AiFillTags } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
@@ -21,9 +21,6 @@ class TodoList extends Component {
     this.TASK_ON_PAGE = 4;
     this.BASE_URL = "http://localhost/API/";
   }
-  clickChangepage = (idPage) => {
-    this.setState({ page: idPage });
-  }
   setDataShow = (page) => {
     let BEGIN = (page - 1) * this.TASK_ON_PAGE;
     let END = BEGIN + this.TASK_ON_PAGE;
@@ -41,14 +38,15 @@ class TodoList extends Component {
   componentDidMount() {
     Axios.get(`${this.BASE_URL}get/sortUp.php`)
       .then(req => {
+        console.log(req);
         this.setTodo(req.data);
         this.setDataShow(1);
       })
       .catch(err => {
         console.log(err);
       })
-      const todo_inputSearch = document.querySelector('#todo-inputSearch');
-      this.searchTask(todo_inputSearch);
+    const todo_inputSearch = document.querySelector('#todo-inputSearch');
+    this.searchTask(todo_inputSearch);
   }
   handlePani = (e) => {
     this.setDataShow(parseInt(e.target.id));
@@ -59,15 +57,16 @@ class TodoList extends Component {
     Axios.post(`${this.BASE_URL}post/addTask.php`, { task: value })
       .then(req => {
         this.setTodo(req.data);
+        this.setDataShow(1);
       })
       .catch(err => {
         console.log(err);
       })
   }
   deleteTask = (id) => {
-    const ok = document.querySelector('#ok');
-    const cancel = document.querySelector('#cancle');
-    const modal = document.querySelector('.modalDelete');
+    let ok = document.querySelector('#ok');
+    let cancel = document.querySelector('#cancle');
+    let modal = document.querySelector('.modalDelete');
     modal.style.display = 'block';
     cancel.addEventListener('click', () => {
       modal.style.display = 'none';
@@ -86,19 +85,58 @@ class TodoList extends Component {
     })
 
   }
-  searchTask = (todo_inputSearch)=>{
-    todo_inputSearch.addEventListener('keydown',(e)=>{
-        if(e.keyCode === 13){
-          Axios.get(`${this.BASE_URL}get/searchTask.php?keyword=${e.target.value}`)
-          .then(req=>{
+  searchTask = (todo_inputSearch) => {
+    todo_inputSearch.addEventListener('keydown', (e) => {
+      if (e.keyCode === 13) {
+        Axios.get(`${this.BASE_URL}get/searchTask.php?keyword=${e.target.value}`)
+          .then(req => {
             this.setTodo(req.data);
             this.setDataShow(1);
           })
-          .catch(err=>{
+          .catch(err => {
             console.log(err);
           })
+      }
+    })
+  }
+  editTask = (id) => {
+    let modal = document.querySelector('.modalEdit');
+    let valueEdit = document.querySelector('#valueEdit');
+    let okEdit = document.querySelector('#okEdit');
+    valueEdit.addEventListener('keydown',(e)=>{
+        if(e.keyCode === 13){
+          console.log(e.target.value);
         }
     })
+    modal.style.display = 'block';
+    // Axios.post(`${this.BASE_URL}post/editTask.php`,{
+    //   id_task : id,
+    //   valueTask : 'truyền thử thôi ahihi',
+    // }).then(res=>{
+    //   this.setTodo(res.data);
+    //   this.setDataShow(1);
+    // }).catch(err=>{
+    //   console.log(err);
+    // })
+  }
+  sortUp = () => {
+    Axios.get(`${this.BASE_URL}get/sortUp.php`)
+      .then(req => {
+        this.setTodo(req.data);
+        this.setDataShow(1);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+  sortDown = () => {
+    Axios.get(`${this.BASE_URL}get/sortDown.php`)
+      .then(req => {
+        this.setTodo(req.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
   render() {
     return (
@@ -126,8 +164,8 @@ class TodoList extends Component {
                   className="browser-default custom-select"
                 >
                   <option>Sắp xếp</option>
-                  <option defaultValue="1">Từ A - Z</option>
-                  <option defaultValue="2">Từ Z - A</option>
+                  <option defaultValue="1" onClick={() => this.sortUp()}>Từ A - Z</option>
+                  <option defaultValue="2" onClick={() => this.sortDown()}>Từ Z - A</option>
                 </select>
               </div>
             </div>
@@ -170,12 +208,28 @@ class TodoList extends Component {
                 {
                   this.state.dataShow.map((value, index) => {
                     return <TodoItem
-                     congviec = {value['name_task']}
+                      edit={() => this.editTask(value['id_task'])}
+                      congviec={value['name_task']}
                       key={value['id_task']} task={value['name_task']} stt={index + 1} delete={() => this.deleteTask(value['id_task'])} id={value['id_task']}>
-                     </TodoItem>
+                    </TodoItem>
                   })
                 }
               </tbody>
+
+              <div className="modalEdit">
+                <div className="overlayEdit"></div>
+                <div className="AlertEdit">
+                  <div className="card">
+                    <div className="card-header">
+                      <div className="card-title" ><h4>Bạn muốn Edit ?</h4></div>
+                    </div>
+                    <div className="card-body">
+                      <FormControl id="valueEdit"></FormControl>
+                      <Button className="btn btn-danger" id="okEdit">Edit</Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="modalDelete">
                 <div className="overlay"></div>
                 <div className="AlertDelete">

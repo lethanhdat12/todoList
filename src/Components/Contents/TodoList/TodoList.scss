@@ -143,7 +143,7 @@ $borderCustom: 1px solid #cededa;
     cursor: pointer;
   }
 }
-.modalDelete{
+.modalDelete,.modalEdit{
   position: fixed;
   top: 0;
   right: 0;
@@ -152,12 +152,12 @@ $borderCustom: 1px solid #cededa;
   z-index: 1;
   background-color: rgba($color: #949292, $alpha: 0.4);
   display: none;
-  .overlay{
+  .overlay,.overlayEdit{
     width: 100%;
     height: 100%;
     position: absolute;
   }
-  .AlertDelete{
+  .AlertDelete,.AlertEdit{
     width: 400px;
     background-color: white;
     margin: 0 auto;

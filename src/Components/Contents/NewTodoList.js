@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react";
 import "./NewTodoList.scss";
 import "./TodoList.scss";
 import {BrowserRouter as Router,Switch,Route,Link,useParams} from "react-router-dom";
-import { AiFillCodeSandboxCircle, AiFillStepBackward, } from "react-icons/ai";
+import { AiFillStepBackward, } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
 import { GrAddCircle } from "react-icons/gr";
 import { Button, Container, Table } from "react-bootstrap";
@@ -102,7 +102,11 @@ function NewTodoList(props) {
                     <tbody>
 
                       {listdata.map((value,index)=>{
-                        return  <NewTodoListItem stt={index + 1} tieude={value['item']} key={index}   delete={()=>handleDeleleTaskItem(value['id_listItemTask'])}></NewTodoListItem>
+                        return  <NewTodoListItem
+                         
+                         stt={index + 1} tieude={value['item']} key={index}   delete={()=>handleDeleleTaskItem(value['id_listItemTask'])}>
+
+                         </NewTodoListItem>
                       })}
         
                     </tbody>
